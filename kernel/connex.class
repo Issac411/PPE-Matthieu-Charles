@@ -1,0 +1,19 @@
+<?php
+
+ class connex {
+	public static $bdd;
+	
+	public static function connexion() {
+		connex::$bdd = new PDO('mysql:host=localhost;dbname=Bourdon;', 'root', '');
+		return true;
+	}
+		
+	public function deconnexion() {
+		$bdd = null;
+		return true;
+		}
+
+
+}
+
+?>

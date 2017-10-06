@@ -1,0 +1,19 @@
+<?php
+
+ class connex {
+	public static $bdd;
+	
+	public function connexion() {
+		connex::$bdd = new PDO('pgsql:host=sio-sql;dbname=mribotto;', 'mribotto', 'matthieu');
+		return true;
+	}
+		
+	public function deconnexion() {
+		$bdd = null;
+		return true;
+		}
+
+
+}
+
+?>
