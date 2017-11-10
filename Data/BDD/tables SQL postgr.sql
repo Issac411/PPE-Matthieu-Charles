@@ -39,7 +39,7 @@ CREATE TABLE categories (
 	);*/
 
 CREATE TABLE tva (
-	id SERIAL PRIMAY KEY,
+	id SERIAL PRIMARY KEY,
 	libelle varchar(100)  		NOT NULL,
 	taux float
 	);
@@ -52,7 +52,7 @@ CREATE TABLE articles (
 	libelle varchar(100),
 	taux_tva float,
 	prix_unitaire_ht float,
-	prix_ttc float AS (prix_unitaire_ht+(prix_unitaire_ht*(taux_tva/100))-reduction),
+	prix_ttc float, /*AS (prix_unitaire_ht+(prix_unitaire_ht*(taux_tva/100))-reduction),*/
 	disponible boolean,
 	reduction float
 	);
@@ -66,7 +66,7 @@ CREATE TABLE commandes (
 	montant_ht float,
 	frais_livraison float,
 	taux_tva float,
-	montant_ttc float AS (montant_ht+(montant_ht*(taux_tva/100))+frais_livraison),
+	montant_ttc float,/* AS (montant_ht+(montant_ht*(taux_tva/100))+frais_livraison),*/
 	date_l date 			NOT NULL,
 	livree boolean,
 	payee boolean
@@ -81,7 +81,7 @@ CREATE TABLE commandes_lignes (
 	quantite int,
 	prix_unitaire_ht float,
 	taux_tva float,
-	montant_ht float AS (prix_unitaire_ht*quantite),
-	montant_ttc float AS (prix_unitaire_ht*quantite+(quantite*(prix_unitaire_ht*(taux_tva/100)))),
+	montant_ht float,/*AS (prix_unitaire_ht*quantite),*/
+	montant_ttc float,/* AS (prix_unitaire_ht*quantite+(quantite*(prix_unitaire_ht*(taux_tva/100)))),*/
 	type boolean NOT NULL
 	);
