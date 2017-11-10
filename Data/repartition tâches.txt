@@ -1,0 +1,14 @@
+[BDD]
+-
+-
+-
+-----
+	------> Tables SQL en graphique, en texte MYSQL et POSTGR - Matthieu
+		 -> Tables SQL en diagramme - Charles
+
+[Conventions]
+-
+-
+-
+-----
+	-----> Convention de nommage - Matthieu
