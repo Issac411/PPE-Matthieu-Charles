@@ -1,19 +1,21 @@
-// Voici les conventions de nommage des variables, nom de table et autres éléments notables
+// Voici les conventions de nommage des variables, nom de table et autres Ã©lÃ©ments notables
 	
 //	SQL PARLANT
 
 	Les noms de tables sont en minuscules, ainsi que leurs colonnes.
 	
-	Le espaces sont remplacés par des underscore "_".
+	Le espaces sont remplacÃ©s par des underscore "_".
+	
+	On peut Ã©crire en FranÃ§ais de prÃ©fÃ©rance, l'anglais est possible pour raccourcir les mots trop longs
 	
 //	WEB (PHP OBJET) PARLANT
 
-	En php, les classes objet auront leurs noms en minuscule, l'on utilisera également des minuscules pour les attributs.
+	En php, les classes objet auront leurs noms en minuscule, l'on utilisera Ã©galement des minuscules pour les attributs.
 	
-	Pour parler de l'objet courant ou de ses attributs, même dans sa propre classe, on utilisera $this->attribut.
+	Pour parler de l'objet courant ou de ses attributs, mÃªme dans sa propre classe, on utilisera $this->attribut.
 	
-	La classe mère se nommera "model.class".
-	les atributs seront protégés.
+	La classe mÃ¨re se nommera "model.class".
+	les attributs seront protÃ©gÃ©s.
 
 // WEB (PHP,HTML,JS,JQUERY) PARLANT
 
