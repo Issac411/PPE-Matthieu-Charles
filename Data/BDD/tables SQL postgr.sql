@@ -11,7 +11,7 @@
 
 
 CREATE TABLE utilisateurs (
-	id int SERIAL PRIMARY KEY,
+	id SERIAL PRIMARY KEY,
 	nom varchar(50) 			NOT NULL,
 	prenom varchar(50)  		NOT NULL,
 	adresse_mail varchar(100)  	NOT NULL,
@@ -28,7 +28,7 @@ CREATE TABLE utilisateurs (
 	);
 
 CREATE TABLE categories (
-	id int SERIAL PRIMARY KEY,
+	id SERIAL PRIMARY KEY,
 	image varchar(500),
 	libelle varchar(100) 		NOT NULL
 	);
@@ -39,13 +39,13 @@ CREATE TABLE categories (
 	);*/
 
 CREATE TABLE tva (
-	id int SERIAL PRIMAY KEY,
+	id SERIAL PRIMAY KEY,
 	libelle varchar(100)  		NOT NULL,
 	taux float
 	);
 
 CREATE TABLE articles (
-	id int SERIAL PRIMARY KEY,
+	id SERIAL PRIMARY KEY,
 	id_tva int, /* vers tva */
 	id_categorie int, /* vers categorie */
 	description varchar(500),
@@ -59,7 +59,7 @@ CREATE TABLE articles (
 
 
 CREATE TABLE commandes (
-	id int SERIAL PRIMARY KEY,
+	id SERIAL PRIMARY KEY,
 	id_client int,
 	id_paiement int,
 	id_tva int,
@@ -73,7 +73,7 @@ CREATE TABLE commandes (
 	);
 
 CREATE TABLE commandes_lignes (
-	id int SERIAL PRIMARY KEY,
+	id SERIAL PRIMARY KEY,
 	id_commande int,
 	id_produit int,
 	id_tva int,
