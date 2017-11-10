@@ -29,6 +29,7 @@ CREATE TABLE utilisateurs (
 
 CREATE TABLE categories (
 	id int SERIAL PRIMARY KEY,
+	image varchar(500),
 	libelle varchar(100) 		NOT NULL
 	);
 
