@@ -1,0 +1,32 @@
+Hey !
+
+Content que tu sois passé par là ^^
+
+Donc perso j'ai commencé a faire du front, tranquillement normalemen t'a un screen sur fb.
+Maintenant il faudrait de ton coté que tu fasse un système d'inscription en prenant en compte nos informations SQL
+Donc qu'un gars puisse se créer un compte, avec les infos ce-dessous :
+
+CREATE TABLE utilisateurs (
+	id int SERIAL PRIMARY KEY,
+	nom varchar(50) 			NOT NULL,
+	prenom varchar(50)  		NOT NULL,
+	adresse_mail varchar(100)  	NOT NULL,
+	mdp varchar(500)			NOT NULL,
+	adresse1 varchar(150) 		NOT NULL,
+	adresse2 varchar(150),
+	code_postal int  		 	NOT NULL,
+	ville varchar(50)  			NOT NULL,
+	num_tel int  				NOT NULL,
+	num_mobile int,
+	date_naissance date 		NOT NULL,
+	type boolean 				NOT NULL,
+	validation boolean			NOT NULL
+	);
+
+Pour cela tu devras développer un model, un controller et une vue spécifique a l'inscription.
+Pour l'inscription, je te propose de faire une vérif bot avec le plugin utile de google (captacha)
+Je vais te livrer deux trois données utile, déjà une version très "basique" de l'appli actuelle, tu pourras t'en servir.
+En fait il s'aggit du forum que je modifie tout simplement, mais j'essaie de garder un style sobre.
+
+Donc réalise l'inscrition des utilisateurs, tu pourras aussi prendre la liberté de leurs faire un profil, il y a déjà le néccésaire pour se connecter.
+
