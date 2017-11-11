@@ -1,0 +1,60 @@
+<?php
+$path = KERNEL."/model.class";
+require_once($path);
+
+class sujet extends model {
+	protected $id;
+	protected $nom;
+	protected $id_auteur;
+	protected $date_creation;
+	protected $etat;
+	protected $id_categorie;
+
+		public function __construct() {
+			parent::__construct('sujet','id','id_categorie');
+			$this->id = '';
+			$this->nom = '';
+			$this->id_auteur = '';
+			$this->date_creation = '';
+			$this->etat = '';
+			$this->id_categorie = '';
+			$this->read_target = '';
+		}
+
+		public function set_id($id) {
+			$this->id = $id;
+		}
+
+		public function set_nom($nom) {
+			$this->nom = $nom;
+		}
+
+		public function set_id_auteur($id) {
+			$this->id_auteur = $id;
+		}
+
+		public function set_date($date_creation) {
+			$this->date_creation = $date_creation;
+		}
+
+		public function set_etat($etat) {
+			$this->etat = $etat;
+		}
+
+		public function set_categorie($id_categorie) {
+			$this->id_categorie = $id_categorie;
+			$this->read_target = $id_categorie;
+		}
+
+		public function readAllSujet() {
+
+
+		}
+
+
+
+}
+
+
+
+?>

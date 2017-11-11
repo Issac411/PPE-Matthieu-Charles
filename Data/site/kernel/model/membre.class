@@ -1,0 +1,85 @@
+<?php
+$path = KERNEL."/model.class";
+require_once($path);
+
+class membre extends model {
+	protected $id;
+	protected $pseudo;
+	protected $date_inscription;
+	protected $sexe;
+	protected $age;
+	protected $mdp;
+	protected $nb_messages;
+	protected $avatar;
+	protected $status;
+	protected $role;
+
+
+	public function __construct() {
+		parent::__construct('membre','id','id');
+		$this->id = '';
+		$this->pseudo='';
+		$this->date_inscription='';
+		$this->sexe='';
+		$this->age='';
+		$this->mdp='';
+		$this->nb_messages='';
+		$this->read_target = '';
+		$this->avatar='';
+		$this->status = '';
+		$this->role='';
+	}
+
+		public function set_id($id) {
+			$this->id = $id;
+			$this->read_target = $id;
+		}
+
+		public function set_pseudo($pseudo) {
+			$this->pseudo = $pseudo;
+		}
+
+		public function set_date_inscription($date_inscription) {
+			$this->date_inscription = $date_inscription;
+		}
+
+        public function set_sexe($sexe) {
+            $this->sexe = $sexe;
+        }
+
+        public function set_age($age) {
+            $this->age = $age;
+        }
+
+        public function set_mdp($mdp) {
+            $this->mdp = $mdp;
+        }
+
+		public function set_nb_messages($nb_messages) {
+			$this->nb_messages = $nb_messages;
+		}
+
+        public function set_avatar($avatar) {
+            $this->avatar = $avatar;
+        }
+
+        public function change_avatar() {
+            $req = "UPDATE ".$this->table." set avatar='".$this->avatar."' where(id =".$this->id.");";
+            $bdd = connex::connexion();
+            connex::$bdd->query($req);
+            $bdd = null;
+        }
+
+        function check_create_right() {
+           $req = "select * from role where (id = ".$this->id.")";
+           $bdd = connex::connexion();
+           $result = connex::$bdd->query($req);
+           $bdd = null;
+           return $result;
+        }
+}
+
+
+
+
+?>

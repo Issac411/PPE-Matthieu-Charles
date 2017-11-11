@@ -1,17 +1,32 @@
 <?php
-	require("connex.class");
+    $path = MODEL."connex.class";
+	require_once($path);
 	class model extends connex {
+	protected $table;
+	//protected $global_id;
+	protected $array_sys;
+	protected $read_target_var;
+	protected $read_target;
 
 			
-			public function __construct() {
+			protected function __construct($table,$primary,$read_target_var) {
+				$this->table = $table;
+				$this->primary = $primary;
+				$this->read_target_var = $read_target_var;
+				$this->array_sys = array('table','primary','read_target','read_target_var','array_sys');
+
 			}
 			
 	public function get_nom() {
 		return $nom;
 	}
+
+	public function set_read_target($read_target) {
+	    $this->read_target = $read_target;
+	    }
 	
 	public function del($id) {
-		$req = "DELETE FROM ".$this->db_name." where(id=$id)";
+		$req = "DELETE FROM ".$this->table." where(id=$id)";
 		$bdd = connex::connexion();
 		connex::$bdd->query($req);
 		$bdd = null;
@@ -19,7 +34,7 @@
 		}
 		
 	public function readAll() {
-		$req = "SELECT * FROM ".$this->db_name.";";
+		$req = "SELECT * FROM ".$this->table.";";
 		$bdd = connex::connexion();
 		$res = connex::$bdd->query($req); 
 		while($data = $res->fetch()) {
@@ -29,41 +44,84 @@
 		return $cats;
 		}
 		
-	public function readTopics($id) {
-		$req = "SELECT * FROM ".$this->db_name." where(id = $id);";
+	public function read($id) {
+	    $this->set_read_target($id);
+		$req = "SELECT * FROM ".$this->table." where(".$this->read_target_var." = ".$this->read_target.") ORDER BY id ASC;";
 		$bdd = connex::connexion();
-		$res = connex::$bdd->query($req); 
-		$data = $res->fetch(PDO::FETCH_ASSOS);
-		foreach($data as $k->v) {
-			$this->$k=$v;
-		}
+		$res = connex::$bdd->query($req);
+		while($data = $res->fetch()) {
+			$cats[] = $data;
+			}
 		$bdd = null;
-		return $cat;
+		if(isset($cats)) {
+		    return $cats;
 		}
+		else{
+		    return null;
+		    }
+		}
+
+	public function load_auteur($id) {
+	    $req = "select pseudo from membre where(id = $id)";
+		$bdd = connex::connexion();
+    	$res = connex::$bdd->query($req);
+    	$data = $res->fetch();
+    	return $data;
+
+	    }
 		
 	public function createTopic() {
-		$req = "INSERT INTO ".$this->db_name." (".$this->attributes.") VALUES (".$this->attributes_var.")";
-		echo $req;
+		$req = "INSERT INTO ".$this->table." (".$this->get_attribute().") VALUES (".$this->get_attribute_var().")";
 		$bdd = connex::connexion();
 		connex::$bdd->query($req);
 		$bdd = null;
 		}
 
 		public function updateTopic() {
-				$req = "UPDATE ".$this->db_name." set nom='".$this->nom."',description='".$this->description."',image='".$this->image."' where(id =".$this->id.");";
-				// auto généré en php du genre dans le update on prépare un attribut de ciblage contenant tout le neccésaire ? + gérer les attributs privés
+		        $setter = null;
+				foreach($this as $k=>$v ) {
+					if(!in_array($k,$this->array_sys)&&($k!=$this->primary)) {
+					$setter = $setter.$k."="."'".$v."',";
+					}
+				}
+				$setter = substr($setter, 0, -1);
+				$req = "UPDATE ".$this->table." set ".$setter." where(id =".$this->id.");";
 				$bdd = connex::connexion();
 				connex::$bdd->query($req);
 				$bdd = null;
 			}
+
+	public function get_attribute() {
+	        $setter = "";
+			foreach($this as $k=>$v ) {
+					if(!in_array($k,$this->array_sys)&&($k!=$this->primary)) {
+					$setter = $setter.$k.",";
+					}
+				}
+				$setter = substr($setter, 0, -1);
+				if(!isset($setter)) {
+				$setter = 0;
+				}
+				return $setter;
+	}
+
+	public function get_attribute_var() {
+	            $setter = '';
+				foreach($this as $k=>$v ) {
+				if(!in_array($k,$this->array_sys)&&($k!=$this->primary)) {
+					if(is_numeric($v)) {
+						$setter = $setter.$v.",";
+					} else {
+						$setter = $setter."'".$v."',";
+					}
+				}
+		}
+		$setter = substr($setter, 0, -1);
+		return $setter;
+	}
 		
 	public function test(){ echo "test";}
-	
-	public function to_string() {
-			return 	$this->nom." | ".
-					$this->description." | ".
-					$this->image." | ";
-		}
+		
 	
 	}
 	

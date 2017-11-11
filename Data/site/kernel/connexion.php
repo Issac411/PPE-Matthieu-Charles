@@ -1,33 +1,31 @@
 <?php
-	require('connex.class');
+	require_once('model/connex.class');
 	connex::connexion();
-	session_start();
-	if(ISSET($_POST['mail'])) {
+    session_start();
+	if(ISSET($_POST['pseudo'])) {
 		$mdp = $_POST['mdp'];
-		$mail = $_POST['mail'];
-		$mdp = md5($mdp);
-		echo $mdp." | ";
-		$req = 'SELECT * FROM utilisateurs where (adresse_mail="'.$mail.'")';
-		echo $req;
-		$req = connex::$bdd->query($req);
+		$pseudo = $_POST['pseudo'];
+		$req = connex::$bdd->query('SELECT * FROM membre where (pseudo =\''.$pseudo.'\')');
 		if ($res = $req->fetch()) {
-			echo $res['mdp']." | ";
 			if($res['mdp']==$mdp) {	
-				$_SESSION['mail'] = $mail;
+				$_SESSION['pseudo'] = $pseudo;
 				$_SESSION['id'] = $res['id'];
-				$_SESSION['nom'] = $res['nom'];
-				header('location: ../index.php');
+                $_SESSION['status'] = $res['status'];
+                $_SESSION['role'] = $res['role'];
+                $path = 'location:../';
+				header($path);
+
 			} else {
 				$_SESSION['id'] = '-1';
-				header('location: ../index.php');
+                $path = 'location:../';
+                header($path);
 			}
 		} else {
-				$_SESSION['id'] = '-1';
-				header('location: ../index.php');
+            $_SESSION['id'] = '-1';
+            $path = 'location:../';
+            header($path);
+
 		}
-	} else {
-			$_SESSION['id'] = '-1';
-			header('location: ../index.php');
 	}
 
 	

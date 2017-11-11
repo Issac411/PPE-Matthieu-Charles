@@ -1,0 +1,57 @@
+<?php
+$path = KERNEL."/model.class";
+require_once($path);
+
+class message extends model {
+	protected $id;
+	protected $id_auteur;
+	protected $date_creation;
+	protected $corps;
+	protected $id_sujet;
+
+
+
+
+
+	public function __construct() {
+		parent::__construct('message','id','id_sujet');
+		$this->id = '';
+		$this->id_auteur='';
+		$this->date_creation='';
+		$this->corps='';
+		$this->id_sujet='';
+		$this->read_target = '';
+	}
+
+		public function set_id($id) {
+			$this->id = $id;
+		}
+
+		public function set_dernier_message($id) {
+        		$this->dernier_message = $id;
+        }
+
+		public function set_corps($corps) {
+			$this->corps = $corps;
+		}
+
+		public function set_id_auteur($id) {
+			$this->id_auteur = $id;
+		}
+
+		public function set_date($date_creation) {
+			$this->date_creation = $date_creation;
+		}
+
+		public function set_id_sujet($id_sujet) {
+			$this->id_sujet = $id_sujet;
+			$this->read_target = $id_sujet;
+		}
+
+
+}
+
+
+
+
+?>

@@ -1,0 +1,60 @@
+<?php
+$path = KERNEL."/model.class";
+require_once($path);
+
+class article extends model {
+	protected $id;
+    protected $id_tva;
+    protected $id_categorie;
+    protected $description;
+	protected $libelle;
+	protected $taux_tva;
+	protected $prix_unitaire_ht;
+    protected $disponible;
+	protected $reduction;
+
+		public function __construct() {
+			parent::__construct('sujet','id','id_categorie');
+			$this->id = '';
+			$this->id_tva = '';
+			$this->id_categorie = '';
+			$this->description = '';
+			$this->libelle= '';
+			$this->taux_tva = '';
+            $this->prix_unitaire_ht = '';
+            $this->disponible= '';
+            $this->reduction = '';
+			$this->read_target = '';
+		}
+
+		public function set_id($id) {
+			$this->id = $id;
+		}
+
+		public function set_libelle($libelle) {
+			$this->libelle = $libelle;
+		}
+
+		public function set_id_tva($id) {
+			$this->id_tva = $id;
+		}
+
+		public function set_id_categorie($id)
+        {
+            $this->id_categorie = $id;
+            $this->read_target = $id;
+        }
+
+
+		public function readAllSujet() {
+
+
+		}
+
+
+
+}
+
+
+
+?>
