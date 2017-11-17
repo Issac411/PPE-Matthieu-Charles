@@ -49,6 +49,7 @@ CREATE TABLE articles (
 	prix_ttc float AS (prix_unitaire_ht+(prix_unitaire_ht*(taux_tva/100))-reduction),
 	disponible boolean,
 	reduction float,
+	image varchar(500),
 	CONSTRAINT pk_id PRIMARY KEY (id)
 	);
 
