@@ -54,7 +54,8 @@ CREATE TABLE articles (
 	prix_unitaire_ht float,
 	prix_ttc float, /*AS (prix_unitaire_ht+(prix_unitaire_ht*(taux_tva/100))-reduction),*/
 	disponible boolean,
-	reduction float
+	reduction float,
+	image varchar(500)
 	);
 
 
