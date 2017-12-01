@@ -5,6 +5,10 @@
 		- auto increment qui n'a pas le même nom
 		- déclaration différente des contraintes
 		- Postgr qui est à mon sens moins stable et bien exigant en terme de syntaxe
+		
+	EDIT du 01/12/2017 :
+		- Les variables calculés ne le sont plus dans le SQL, a voir avec AJAX
+		- Projet de mise en NM des photos, affaire a suivre
 
 		Aucun test n'a été effectué
 		*/
@@ -27,7 +31,7 @@ CREATE TABLE utilisateurs (
 	validation boolean			NOT NULL
 	);
 
-CREATE TABLE categories (
+CREATE TABLE categorie (
 	id SERIAL PRIMARY KEY,
 	image varchar(500),
 	libelle varchar(100) 		NOT NULL
@@ -44,7 +48,7 @@ CREATE TABLE tva (
 	taux float
 	);
 
-CREATE TABLE articles (
+CREATE TABLE article (
 	id SERIAL PRIMARY KEY,
 	id_tva int, /* vers tva */
 	id_categorie int, /* vers categorie */
